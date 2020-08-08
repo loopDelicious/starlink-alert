@@ -1,4 +1,5 @@
 venv/
+.env
 
 deltat.data
 deltat.preds

@@ -8,10 +8,15 @@ https://celestrak.com/NORAD/elements/starlink.txt
 
 # Get started 🌟
 
+Create and activate your virtual environment
+
+    python -m venv venv 
+    source venv/bin/activate
+
 Install your dependencies for Python 3
 
     pip install -r requirements.txt
 
-Run the script
+Run the script locally
 
     python tracker.py

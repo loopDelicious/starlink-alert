@@ -1,6 +1,7 @@
 astroid==2.4.2
 certifi==2020.6.20
 chardet==3.0.4
+DateTime==4.3
 idna==2.10
 isort==4.3.21
 jplephem==2.14
@@ -9,6 +10,7 @@ mccabe==0.6.1
 numpy==1.19.1
 PyJWT==1.7.1
 pylint==2.5.3
+python-dotenv==0.14.0
 pytz==2020.1
 requests==2.24.0
 sgp4==2.12
@@ -19,3 +21,4 @@ twilio==6.44.1
 typed-ast==1.4.1
 urllib3==1.25.10
 wrapt==1.12.1
+zope.interface==5.1.0
