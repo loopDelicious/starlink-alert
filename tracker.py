@@ -1,4 +1,5 @@
 import os
+import math
 from dotenv import load_dotenv
 load_dotenv()
 from skyfield.api import Topos, load
@@ -26,7 +27,12 @@ for satellite in starlinks:
 
     # filter out farthest satellites and NaN elevation
     elevation = satellite.at(t0).subpoint().elevation.km
-    if (elevation > 400 ) or (bool(float(elevation))): continue 
+    isNan = math.isnan(elevation)
+    if elevation > 400 or isNan: continue 
+    print ('considering: {} at {}km'.format(
+        satellite.name,
+        round(elevation)
+    ))
 
     # find and loop through rise / set events
     t, events = satellite.find_events(san_francisco, t0, t1, altitude_degrees=30.0)
@@ -50,10 +56,9 @@ for satellite in starlinks:
 if (first_sighting):  
 
     # create body for SMS   
-    next_sighting = ('next sighting: {} {} {}'.format(
+    next_sighting = ('next sighting: {} {}'.format(
         first_sighting['satellite'].name,
-        first_sighting['time_object'].astimezone(pacific).strftime('%Y-%m-%d %H:%M'),
-        elevation
+        first_sighting['time_object'].astimezone(pacific).strftime('%Y-%m-%d %H:%M')
     ))
 
     # send SMS via Twilio if upcoming sighting
