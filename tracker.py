@@ -12,9 +12,9 @@ starlink_url = 'https://celestrak.com/NORAD/elements/starlink.txt'
 starlinks = load.tle_file(starlink_url)
 print ('Loaded', len(starlinks), 'satellites')
 
-# update city location and timezone
-san_francisco = Topos('37.7749 N', '122.4194 W')
-pacific = timezone('US/Pacific')
+# update city location's latitude and longitude and timezone
+location = Topos('37.7749 N', '122.4194 W')
+tz = timezone('US/Pacific')
 
 # establish time window of opportunity
 ts = load.timescale()
@@ -35,7 +35,7 @@ for satellite in starlinks:
     ))
 
     # find and loop through rise / set events
-    t, events = satellite.find_events(san_francisco, t0, t1, altitude_degrees=30.0)
+    t, events = satellite.find_events(location, t0, t1, altitude_degrees=30.0)
     for ti, event in zip(t, events):
         
         # check if satellite visible to a ground observer
@@ -58,7 +58,7 @@ if (first_sighting):
     # create body for SMS   
     next_sighting = ('next sighting: {} {}'.format(
         first_sighting['satellite'].name,
-        first_sighting['time_object'].astimezone(pacific).strftime('%Y-%m-%d %H:%M')
+        first_sighting['time_object'].astimezone(tz).strftime('%Y-%m-%d %H:%M')
     ))
 
     # send SMS via Twilio if upcoming sighting
