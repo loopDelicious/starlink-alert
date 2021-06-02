@@ -19,6 +19,6 @@ skyfield==1.25
 toml==0.10.1
 twilio==6.44.1
 typed-ast==1.4.1
-urllib3==1.25.10
+urllib3==1.26.5
 wrapt==1.12.1
 zope.interface==5.1.0
